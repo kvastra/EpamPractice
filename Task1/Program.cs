@@ -2,16 +2,32 @@
 
 class Program
 {
+    private static Action GetTaskCall(int x) =>
+        x switch
+        {
+            1 => TaskService.Task1,
+            2 => TaskService.Task2,
+            3 => TaskService.Task3,
+            4 => TaskService.Task4,
+            5 => TaskService.Task5,
+            6 => TaskService.Task6,
+            7 => TaskService.Task7,
+            8 => TaskService.Task8,
+            9 => TaskService.Task9,
+            10 => TaskService.Task10,
+            11 => TaskService.Task11,
+            12 => TaskService.Task12,
+            _ => throw new ArgumentOutOfRangeException(nameof(x), x, "Out of range")
+        };
+
     static void Main(string[] args)
     {
-        var next = true;
-        
-        while(next)
+        while(true)
         {
             Console.WriteLine("\nChoose the task number.\n(Enter 0 (zero) if you'd like to exit)");
             Console.Write("Task number: ");
 
-            var inputNumber = TaskService.ReadLineAndParseToInt();
+            var inputNumber = ToolsService.ReadLineAndParseToInt();
             
             if (inputNumber == null) continue;
 
@@ -19,79 +35,12 @@ class Program
 
             Console.WriteLine();
 
-            switch (taskNumber)
+            if (taskNumber == 0)
             {
-                case 0:
-                    {
-                        next = false;
-                        return;
-                    }
-                case 1:
-                    {
-                        TaskService.Task1();
-                        break;
-                    }
-                case 2:
-                    {
-                        TaskService.Task2();
-                        break;
-                    }
-                case 3:
-                    {
-                        TaskService.Task3();
-                        break;
-                    }
-                case 4:
-                    {
-                        TaskService.Task4();
-                        break;
-                    }
-                case 5:
-                    {
-                        TaskService.Task5();
-                        break;
-                    }
-                case 6:
-                    {
-                        TaskService.Task6();
-                        break;
-                    }
-                case 7:
-                    {
-                        TaskService.Task7();
-                        break;
-                    }
-                case 8:
-                    {
-                        TaskService.Task8();
-                        break;
-                    }
-                case 9:
-                    {
-                        TaskService.Task9();
-                        break;
-                    }
-                case 10:
-                    {
-                        TaskService.Task10();
-                        break;
-                    }
-                case 11:
-                    {
-                        TaskService.Task11();
-                        break;
-                    }
-                case 12:
-                    {
-                        TaskService.Task12();
-                        break;
-                    }
-                default:
-                    {
-                        Console.WriteLine(ErrorCode.IndexOutOfRange);
-                        break;
-                    }
+                break;
             }
+            var action = GetTaskCall(taskNumber);
+            action();
 
             Console.WriteLine();
         }

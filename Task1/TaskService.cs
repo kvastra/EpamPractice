@@ -2,20 +2,20 @@
 
 namespace Task1
 {
-    public class TaskService
+    public static class TaskService
     {
         public static void Task1()
         {
             Console.WriteLine("1.1 RECTANGLE");
             Console.Write("a = ");
-            var inputA = ReadLineAndParseToInt();
+            var inputA = ToolsService.ReadLineAndParseToInt();
 
-            if (inputA == null || !ValidateNumber(inputA.Value)) return;
+            if (inputA == null || !ToolsService.ValidateNumber(inputA.Value)) return;
 
             Console.Write("b = ");
-            var inputB = ReadLineAndParseToInt();
+            var inputB = ToolsService.ReadLineAndParseToInt();
 
-            if (inputB == null || !ValidateNumber(inputB.Value)) return;
+            if (inputB == null || !ToolsService.ValidateNumber(inputB.Value)) return;
 
             Console.WriteLine($"Result: {inputA.Value * inputB.Value}");
         }
@@ -25,8 +25,8 @@ namespace Task1
             Console.WriteLine("1.2 TRIANGLE");
             Console.Write("N = ");
             
-            var inputN = ReadLineAndParseToInt();
-            if (inputN == null || !ValidateNumber(inputN.Value)) return;
+            var inputN = ToolsService.ReadLineAndParseToInt();
+            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
 
@@ -44,8 +44,8 @@ namespace Task1
             Console.WriteLine("1.3 ANOTHER TRIANGLE");
             Console.Write("N = ");
             
-            var inputN = ReadLineAndParseToInt();
-            if (inputN == null || !ValidateNumber(inputN.Value)) return;
+            var inputN = ToolsService.ReadLineAndParseToInt();
+            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
             var stars = new char[n];
@@ -59,8 +59,8 @@ namespace Task1
             Console.WriteLine("1.4 X-MAS TREE");
             Console.Write("N = ");
             
-            var inputN = ReadLineAndParseToInt();
-            if (inputN == null || !ValidateNumber(inputN.Value)) return;
+            var inputN = ToolsService.ReadLineAndParseToInt();
+            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
 
@@ -79,7 +79,7 @@ namespace Task1
 
             var sum = 0;
 
-            for (int i = 0; i < 1000; i++)
+            for (var i = 0; i < 1000; i++)
             {
                 if (i%3 == 0 || i%5 == 0)
                 {
@@ -117,7 +117,7 @@ namespace Task1
                 Console.WriteLine("Введите:");
                 Console.Write(selectionTypesSB.ToString());
 
-                var inputTypeNumber = ReadLineAndParseToInt();
+                var inputTypeNumber = ToolsService.ReadLineAndParseToInt();
 
                 if (inputTypeNumber == null || inputTypeNumber == 0) 
                     return;
@@ -136,7 +136,7 @@ namespace Task1
         public static void Task7()
         {
             Console.WriteLine("1.7 ARRAY PROCESSING");
-            var n = 10;
+            const int n = 10;
             var arr = new int[n];
 
             var rand = new Random();
@@ -172,47 +172,9 @@ namespace Task1
             Console.WriteLine("");
         }
 
-        public static int? ReadLineAndParseToInt()
-        {
-            var line = Console.ReadLine();
-
-            if (line == null || line.Trim() == "") 
-            { 
-                Console.WriteLine(ErrorCode.EmptyInput);
-                return null;
-            }
-
-            if (int.TryParse(line, out var result))
-            { 
-                return result; 
-            }
-            else
-            {
-                Console.WriteLine(ErrorCode.NotNumber);
-                return null;
-            }
-            
-        }
-        private static bool ValidateNumber(int a)
-        {
-            if (a == 0)
-            {
-                Console.WriteLine(ErrorCode.ZeroNumber);
-                return false;
-            }
-
-            if (a < 0)
-            {
-                Console.WriteLine(ErrorCode.NegativeNumber);
-                return false;
-            }
-
-            return true;
-        }
-
         private static void PrintTriangle(char[] stars, string spaces, int n, int bias = 0)
         {
-            for (int i = 0; i < n; i++)
+            for (var i = 0; i < n; i++)
             {
                 Console.Write(spaces[..(n - i - 1 + bias)]);
 
@@ -234,7 +196,7 @@ namespace Task1
         private static int[] TreeSort(int[] array)
         {
             var treeNode = new TreeNode(array[0]);
-            for (int i = 1; i < array.Length; i++)
+            for (var i = 1; i < array.Length; i++)
             {
                 treeNode.Insert(new TreeNode(array[i]));
             }

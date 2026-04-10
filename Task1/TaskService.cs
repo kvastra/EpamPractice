@@ -141,34 +141,18 @@ namespace Task1
             var arr = (int[])ArrayTools.FillArrayRandomValues(new int[n], 0, 100);
 
             var sortArr = TreeSort(arr);
-
-            Console.WriteLine($"Initial array: {string.Join(", ", arr)}");
-            Console.WriteLine($"Sorted array: {string.Join(", ", sortArr)}");
+            
+            Console.WriteLine($"Initial array: {ArrayTools.GetStringOfArray(arr)}");
+            Console.WriteLine($"Sorted array: {ArrayTools.GetStringOfArray(sortArr)}");
             Console.WriteLine($"Min: {sortArr[0]}\tMax: {sortArr[n-1]}");
         }
         public static void Task8()
         {
-            Console.Write("1.8 NO POSITIVE");
+            Console.WriteLine("1.8 NO POSITIVE");
             const int n = 3;
             var arr = (int[,,])ArrayTools.FillArrayRandomValues(new int[n,n,n], 0, 100);
 
-            Console.Write("[");
-            for (var i = 0; i < n; i++)
-            {
-                Console.Write("[");
-                for (int j = 0; j < n; j++)
-                {
-                    Console.Write("[");
-                    for (int k = 0; k < n; k++)
-                    {
-                        Console.Write(arr[i,j,k]);
-                        Console.Write(", ");
-                    }
-                    Console.Write("], ");
-                }
-                Console.Write("], ");
-            }
-            Console.WriteLine("], ");
+            Console.WriteLine(ArrayTools.GetStringOfArray(arr));
         }
         public static void Task9()
         {

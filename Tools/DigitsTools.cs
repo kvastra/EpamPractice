@@ -1,6 +1,6 @@
-﻿namespace Task1;
+﻿namespace Tools;
 
-public static class ToolsService
+public static class DigitsTools
 {
     public static int? ReadLineAndParseToInt()
     {

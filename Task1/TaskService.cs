@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Tools;
 
 namespace Task1
 {
@@ -8,14 +9,14 @@ namespace Task1
         {
             Console.WriteLine("1.1 RECTANGLE");
             Console.Write("a = ");
-            var inputA = ToolsService.ReadLineAndParseToInt();
+            var inputA = DigitsTools.ReadLineAndParseToInt();
 
-            if (inputA == null || !ToolsService.ValidateNumber(inputA.Value)) return;
+            if (inputA == null || !DigitsTools.ValidateNumber(inputA.Value)) return;
 
             Console.Write("b = ");
-            var inputB = ToolsService.ReadLineAndParseToInt();
+            var inputB = DigitsTools.ReadLineAndParseToInt();
 
-            if (inputB == null || !ToolsService.ValidateNumber(inputB.Value)) return;
+            if (inputB == null || !DigitsTools.ValidateNumber(inputB.Value)) return;
 
             Console.WriteLine($"Result: {inputA.Value * inputB.Value}");
         }
@@ -25,8 +26,8 @@ namespace Task1
             Console.WriteLine("1.2 TRIANGLE");
             Console.Write("N = ");
             
-            var inputN = ToolsService.ReadLineAndParseToInt();
-            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
+            var inputN = DigitsTools.ReadLineAndParseToInt();
+            if (inputN == null || !DigitsTools.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
 
@@ -44,8 +45,8 @@ namespace Task1
             Console.WriteLine("1.3 ANOTHER TRIANGLE");
             Console.Write("N = ");
             
-            var inputN = ToolsService.ReadLineAndParseToInt();
-            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
+            var inputN = DigitsTools.ReadLineAndParseToInt();
+            if (inputN == null || !DigitsTools.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
             var stars = new char[n];
@@ -59,8 +60,8 @@ namespace Task1
             Console.WriteLine("1.4 X-MAS TREE");
             Console.Write("N = ");
             
-            var inputN = ToolsService.ReadLineAndParseToInt();
-            if (inputN == null || !ToolsService.ValidateNumber(inputN.Value)) return;
+            var inputN = DigitsTools.ReadLineAndParseToInt();
+            if (inputN == null || !DigitsTools.ValidateNumber(inputN.Value)) return;
 
             var n = inputN.Value;
 
@@ -117,7 +118,7 @@ namespace Task1
                 Console.WriteLine("Введите:");
                 Console.Write(selectionTypesSB.ToString());
 
-                var inputTypeNumber = ToolsService.ReadLineAndParseToInt();
+                var inputTypeNumber = DigitsTools.ReadLineAndParseToInt();
 
                 if (inputTypeNumber == null || inputTypeNumber == 0) 
                     return;
@@ -137,13 +138,7 @@ namespace Task1
         {
             Console.WriteLine("1.7 ARRAY PROCESSING");
             const int n = 10;
-            var arr = new int[n];
-
-            var rand = new Random();
-
-            for (int i = 0; i < n; i++) {
-                arr[i] = rand.Next(100);
-            }
+            var arr = (int[])ArrayTools.FillArrayRandomValues(new int[n], 0, 100);
 
             var sortArr = TreeSort(arr);
 
@@ -153,7 +148,27 @@ namespace Task1
         }
         public static void Task8()
         {
-            Console.WriteLine("");
+            Console.Write("1.8 NO POSITIVE");
+            const int n = 3;
+            var arr = (int[,,])ArrayTools.FillArrayRandomValues(new int[n,n,n], 0, 100);
+
+            Console.Write("[");
+            for (var i = 0; i < n; i++)
+            {
+                Console.Write("[");
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write("[");
+                    for (int k = 0; k < n; k++)
+                    {
+                        Console.Write(arr[i,j,k]);
+                        Console.Write(", ");
+                    }
+                    Console.Write("], ");
+                }
+                Console.Write("], ");
+            }
+            Console.WriteLine("], ");
         }
         public static void Task9()
         {

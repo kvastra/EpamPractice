@@ -1,4 +1,6 @@
-﻿namespace Task1;
+﻿using Tools;
+
+namespace Task1;
 
 class Program
 {
@@ -27,7 +29,7 @@ class Program
             Console.WriteLine("\nChoose the task number.\n(Enter 0 (zero) if you'd like to exit)");
             Console.Write("Task number: ");
 
-            var inputNumber = ToolsService.ReadLineAndParseToInt();
+            var inputNumber = DigitsTools.ReadLineAndParseToInt();
             
             if (inputNumber == null) continue;
 

@@ -8,9 +8,9 @@ public static class ArrayTools
         => FillArrayWithValues(array, () => StaticRandom.Random.Next(min, max)); 
     
     public static Array FillArrayWithValues(Array array, Func<int> next) 
-        => FillArrayRandomValuesRec(array, array.Rank, new int[array.Rank], next);
+        => FillArrayValuesRec(array, array.Rank, new int[array.Rank], next);
 
-    private static Array FillArrayRandomValuesRec(Array array, int currentRank, int[] indexes, Func<int> next)
+    private static Array FillArrayValuesRec(Array array, int currentRank, int[] indexes, Func<int> next)
     {
         if (currentRank == 1)
         {
@@ -24,7 +24,7 @@ public static class ArrayTools
         {
             for (var i = 0; i < array.GetLength(currentRank-1); i++) {
                 indexes[array.Rank - currentRank] = i;
-                FillArrayRandomValuesRec(array, currentRank - 1, indexes, next);
+                FillArrayValuesRec(array, currentRank - 1, indexes, next);
             }
         }
 

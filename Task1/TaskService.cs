@@ -150,25 +150,130 @@ namespace Task1
         {
             Console.WriteLine("1.8 NO POSITIVE");
             const int n = 3;
-            var arr = (int[,,])ArrayTools.FillArrayRandomValues(new int[n,n,n], 0, 100);
+            var arr = (int[,,])ArrayTools.FillArrayRandomValues(new int[n,n,n], -10, 10);
+            Console.WriteLine($"Initial array:\t{ArrayTools.GetStringOfArray(arr)}");
 
-            Console.WriteLine(ArrayTools.GetStringOfArray(arr));
+            for (var i = 0; i < n; i++)
+                for (var j = 0; j < n; j++)
+                    for (var k = 0; k < n; k++)
+                        if (arr[i, j, k] > 0)
+                            arr[i, j, k] = 0;
+
+            Console.WriteLine($"Result array:\t{ArrayTools.GetStringOfArray(arr)}");
         }
+        
         public static void Task9()
         {
-            Console.WriteLine("");
+            Console.WriteLine("1.9 NON-NEGATIVE SUM");
+           
+            const int n = 10;
+            var arr = (int[]) ArrayTools.FillArrayRandomValues(new int[n], -100, 100);
+            var sum = 0;
+            
+            for (var i = 0; i < n; i++)
+                if (arr[i] > 0)
+                    sum += arr[i];
+            
+            Console.WriteLine($"Array: {ArrayTools.GetStringOfArray(arr)}");
+            Console.WriteLine($"Result: {sum}");
         }
+        
         public static void Task10()
         {
-            Console.WriteLine("");
+            Console.WriteLine("1.10 2D ARRAY");
+
+            const int n = 3;
+            var arr = (int[,]) ArrayTools.FillArrayRandomValues(new int[n, n], 0, 10);
+            var sum = 0;
+
+            for (var i = 0; i < n; i++)
+                for (var j = i%2; j < n; j=j+2)
+                    sum += arr[i, j];
+            
+            Console.WriteLine($"Array: {ArrayTools.GetStringOfArray(arr)}");
+            Console.WriteLine($"Result: {sum}");
         }
+        
         public static void Task11()
         {
-            Console.WriteLine("");
+            Console.WriteLine("1.11 MIDDLE STRING LENGTH");
+            
+            Console.Write("Введите текст: ");
+            var text = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(text))
+            {
+                Console.WriteLine(ErrorCode.EmptyInput);
+                return;
+            }
+
+            var words = text.Split();
+
+            var sum = 0;
+            var count = 0;
+
+            foreach (var word in words)
+            {
+                var length = 0;
+                
+                foreach (var symbol in word)
+                {
+                    if (char.IsNumber(symbol) || char.IsSeparator(symbol) || char.IsPunctuation(symbol))
+                        continue;
+
+                    length++;
+                }
+                
+                if (length == 0)
+                    continue;
+
+                count++;
+                sum += length;
+            }
+
+            Console.WriteLine(count == 0 ? "There is no word in text." : $"Result: {sum / count}");
         }
+        
         public static void Task12()
         {
-            Console.WriteLine("");
+            Console.WriteLine("1.12 CHAR DOUBLER");
+
+            Console.Write("Введите первую строку: ");
+            var firstString = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(firstString))
+            {
+                Console.WriteLine(ErrorCode.EmptyInput);
+                return;
+            }
+            
+            Console.Write("Введите вторую строку: ");
+            var secondString = Console.ReadLine();
+            
+            if (string.IsNullOrEmpty(secondString))
+            {
+                Console.WriteLine(ErrorCode.EmptyInput);
+                return;
+            }
+
+            var lettersSet = new HashSet<char>(secondString.ToLower());
+            var resultSb = new StringBuilder();
+
+            foreach (var symbol in secondString)
+            {
+                if (char.IsLetter(symbol))
+                    lettersSet.Add(char.ToLower(symbol));
+            }
+            
+            foreach (var symbol in firstString)
+            {
+                if (char.IsLetter(symbol) && lettersSet.Contains(char.ToLower(symbol)))
+                    resultSb.Append(symbol).Append(symbol);
+                else
+                    resultSb.Append(symbol);
+            }
+            
+            Console.WriteLine($"Результирующая строка: {resultSb}");
         }
 
         private static void PrintTriangle(char[] stars, string spaces, int n, int bias = 0)

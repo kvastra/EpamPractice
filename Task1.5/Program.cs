@@ -1,4 +1,6 @@
-﻿class Program
+﻿using Tools;
+
+class Program
 {
     static void Main(string[] args)
     {
@@ -6,16 +8,22 @@
         if (!int.TryParse(Console.ReadLine().Trim(), out var arrayDimension))
             return;
 
-        int[] subArrayDimensions = new int[arrayDimension];
-        var random = new Random();
+        var subArraysDimensions = new int[arrayDimension];
+        var random = StaticRandom.Random;
+        var count = 1;
 
-        for (int i = 0; i < arrayDimension; i++)
+        for (var i = 0; i < arrayDimension; i++)
         {
             Console.Write($"Input sub array [{i}] dimension: ");
             if (!int.TryParse(Console.ReadLine().Trim(), out var subArrayDim))
                 return;
 
-            subArrayDimensions[i] = subArrayDim;
+            subArraysDimensions[i] = subArrayDim;
+            count *= subArrayDim;
         }
+
+        var array = ArrayTools.FillArrayRandomValues(new int[count], 0, 100);
+        
+        
     }
 }

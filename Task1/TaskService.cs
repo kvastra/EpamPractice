@@ -140,7 +140,7 @@ namespace Task1
             const int n = 10;
             var arr = (int[])ArrayTools.FillArrayRandomValues(new int[n], 0, 100);
 
-            var sortArr = TreeSort(arr);
+            var sortArr = SortingTools.TreeSort(arr);
             
             Console.WriteLine($"Initial array: {ArrayTools.GetStringOfArray(arr)}");
             Console.WriteLine($"Sorted array: {ArrayTools.GetStringOfArray(sortArr)}");
@@ -295,17 +295,6 @@ namespace Task1
                 Console.Write(spaces[..bias]);
                 Console.WriteLine();
             }
-        }
-
-        private static int[] TreeSort(int[] array)
-        {
-            var treeNode = new TreeNode(array[0]);
-            for (var i = 1; i < array.Length; i++)
-            {
-                treeNode.Insert(new TreeNode(array[i]));
-            }
-
-            return treeNode.Transform();
         }
     }
 }

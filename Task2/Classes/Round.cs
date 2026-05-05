@@ -1,25 +1,32 @@
 ﻿using System.Drawing;
+using Tools;
 
 namespace Task2.Classes;
 
 public class Round
 {
     /// <summary>
-    /// Координаты центра окружности
+    /// X-координата центра окружности
     /// </summary>
-    private Point Center { get; set; }
+    private double CenterX { get; set; }
+    
+    /// <summary>
+    /// Y-координата центра окружности
+    /// </summary>
+    private double CenterY { get; set; }
 
     /// <summary>
     /// Радиус окружности
     /// </summary>
     private int Radius { get; set; }
 
-    public Round(int x, int y, int radius)
+    public Round(double x, double y, int radius)
     {
         if (radius <= 0)
-            throw new Exception("Radius must have a positive value.");
-        
-        Center = new Point(x, y);
+            throw new Exception(ErrorMessages.GetValueMustBePositiveError("Radius"));
+
+        CenterX = x;
+        CenterY = y;
         Radius = radius;
     }
     

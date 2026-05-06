@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-using Tools;
+﻿using Tools;
 
 namespace Task2.Classes;
 
-public class Round
+public class Round : Figure
 {
     /// <summary>
     /// X-координата центра окружности
@@ -18,9 +17,9 @@ public class Round
     /// <summary>
     /// Радиус окружности
     /// </summary>
-    private int Radius { get; set; }
+    private double Radius { get; set; }
 
-    public Round(double x, double y, int radius)
+    public Round(double x, double y, double radius)
     {
         if (radius <= 0)
             throw new Exception(ErrorMessages.GetValueMustBePositiveError("Radius"));
@@ -34,7 +33,7 @@ public class Round
     /// Длина окружности
     /// </summary>
     /// <returns></returns>
-    public double Length => 2 * Math.PI * Radius;
+    public double Perimeter => 2 * Math.PI * Radius;
 
     /// <summary>
     /// Площадь окружности

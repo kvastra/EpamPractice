@@ -2,7 +2,7 @@
 
 namespace Task2.Classes;
 
-public class Triangle
+public class Triangle : Figure
 {
     private double SideA { get; set; }
     

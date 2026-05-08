@@ -1,17 +1,12 @@
 ﻿namespace Task2.Classes;
 
-public class Ring: Figure
+public class Ring: IFigure
 {
-    /// <summary>
-    /// Внешнее кольцо
-    /// </summary>
-    private Round OuterRound { get; set; }
+    private Round OuterRound { get; }
     
-    
-    /// <summary>
-    /// Внутреннее кольцо
-    /// </summary>
     private Round InnerRound { get; set; }
+    
+    public FigureType Type { get; init; }
 
     public Ring(double x, double y, double outerRadius, double innerRadius)
     {
@@ -20,7 +15,15 @@ public class Ring: Figure
         Type = FigureType.Ring;
     }
 
-    public double Perimeter() => OuterRound.Perimeter + InnerRound.Perimeter;
+    public Ring(double[] args) : this(args[0], args[1], args[2], args[3])
+    {
+    }
 
-    public double Square() => OuterRound.Square - InnerRound.Square;
+    public double Perimeter => OuterRound.Perimeter + InnerRound.Perimeter;
+
+    public double Square => OuterRound.Square - InnerRound.Square;
+    
+    public override string ToString() => $"Ring: " +
+                                         $"Perimeter = {Perimeter}, " +
+                                         $"Square = {Square}";
 }

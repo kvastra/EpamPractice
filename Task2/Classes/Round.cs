@@ -2,22 +2,15 @@
 
 namespace Task2.Classes;
 
-public class Round : Figure
+public class Round : IFigure
 {
-    /// <summary>
-    /// X-координата центра окружности
-    /// </summary>
     private double CenterX { get; set; }
     
-    /// <summary>
-    /// Y-координата центра окружности
-    /// </summary>
     private double CenterY { get; set; }
-
-    /// <summary>
-    /// Радиус окружности
-    /// </summary>
+    
     private double Radius { get; set; }
+    
+    public FigureType Type { get; init; }
 
     public Round(double x, double y, double radius)
     {
@@ -27,17 +20,17 @@ public class Round : Figure
         CenterX = x;
         CenterY = y;
         Radius = radius;
+        Type = FigureType.Round;
     }
-    
-    /// <summary>
-    /// Длина окружности
-    /// </summary>
-    /// <returns></returns>
-    public double Perimeter => 2 * Math.PI * Radius;
 
-    /// <summary>
-    /// Площадь окружности
-    /// </summary>
-    /// <returns></returns>
+    public Round(double[] args) : this(args[0], args[1], args[2]) {}
+    
+    public double Perimeter => 2 * Math.PI * Radius;
+    
     public double Square => Math.PI * Radius * Radius;
+
+    public override string ToString() => $"Round: " +
+                                         $"Center = ({CenterX}, {CenterY}), " +
+                                         $"Perimeter = {Perimeter}, " +
+                                         $"Square = {Square}";
 }

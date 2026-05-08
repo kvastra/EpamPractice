@@ -2,13 +2,15 @@
 
 namespace Task2.Classes;
 
-public class Triangle : Figure
+public class Triangle : IFigure
 {
-    private double SideA { get; set; }
+    private double SideA { get; }
+
+    private double SideB { get; }
     
-    private double SideB { get; set; }
+    private double SideC { get; }
     
-    private double SideC { get; set; }
+    public FigureType Type { get; init; }
 
     public Triangle(double a, double b, double c)
     {
@@ -25,6 +27,11 @@ public class Triangle : Figure
             throw new Exception(ErrorMessages.IncorrectValueOfSidesError);
 
         (SideA, SideB, SideC) = (a, b, c);
+        Type = FigureType.Triangle;
+    }
+
+    public Triangle(double[] args) : this(args[0], args[1], args[2])
+    {
     }
 
     public double Perimeter => SideA + SideB + SideC;
@@ -35,4 +42,8 @@ public class Triangle : Figure
 
         return Math.Sqrt(p * (p - SideA) * (p - SideB) * (p - SideC));
     }
+    
+    public override string ToString() => $"a = {SideA}, b = {SideB}, c = {SideC}, " +
+                                         $"Perimeter = {Perimeter}, " +
+                                         $"Square = {Square}";
 }

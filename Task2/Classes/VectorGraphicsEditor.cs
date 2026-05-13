@@ -1,10 +1,10 @@
-﻿using System.Text;
+﻿using Tools;
 
 namespace Task2.Classes;
 
 public class VectorGraphicsEditor
 {
-    private List<IFigure> _figures { get; } = [];
+    private List<IFigure> Figures { get; } = [];
     
     public void CreateFigure(FigureType figureType, double[] args)
     {
@@ -12,37 +12,40 @@ public class VectorGraphicsEditor
         {
             case FigureType.Line:
                 if (args.Length != 4)
-                    throw new Exception();
+                    throw new Exception(ErrorMessages.IncorrectArgCountError);
                 
-                _figures.Add(new Line(args));
-                
+                Figures.Add(new Line(args));
                 break;
+            
             case FigureType.Rectangle:
                 if (args.Length != 2)
-                    throw new Exception();
+                    throw new Exception(ErrorMessages.IncorrectArgCountError);
                 
-                _figures.Add(new Rectangle(args));
+                Figures.Add(new Rectangle(args));
                 break;
+            
             case FigureType.Round:
                 if (args.Length != 3)
-                    throw new Exception();
+                    throw new Exception(ErrorMessages.IncorrectArgCountError);
                 
-                _figures.Add(new Round(args));
+                Figures.Add(new Round(args));
                 break;
+            
             case FigureType.Ring:
                 if (args.Length != 4)
-                    throw new Exception();
+                    throw new Exception(ErrorMessages.IncorrectArgCountError);
                 
-                _figures.Add(new Ring(args));
+                Figures.Add(new Ring(args));
                 break;
+            
             default:
-                break;
+                throw new Exception(ErrorMessages.IncorrectTypeError);
         }
     }
 
     public void PrintFigures()
     {
-        foreach (var figure in _figures)
+        foreach (var figure in Figures)
             Console.WriteLine(figure.ToString());
     }
 }

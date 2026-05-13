@@ -5,6 +5,10 @@ public static class ErrorMessages
     public const string IncorrectValueOfSidesError =
         "Incorrect value of sides: the sum of two sides must not be greater than the third.";
 
+    public const string IncorrectTypeError = "Incorrect type.";
+
+    public const string IncorrectArgCountError = "Incorrect arguments count.";
+
     public static string GetValueMustBeGreaterThanZeroError(string variableName) =>
         $"{variableName} must have value that greater than zero.";
     
